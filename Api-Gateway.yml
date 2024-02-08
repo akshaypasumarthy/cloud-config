@@ -1,0 +1,24 @@
+server:
+  port: 8003
+
+spring:
+  application:
+    name: Api-Gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+      routes:
+      - id: CMS
+        uri: lb://CMS
+        predicates:
+        - Path=/bank/**
+      - id: AMS
+        uri: lb://AMS
+        predicates:
+        - Path=/banks/**
+        
+
+      
